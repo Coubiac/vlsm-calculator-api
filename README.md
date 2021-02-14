@@ -111,3 +111,21 @@ curl -H "Content-Type: application/json" -H "Accept: application/json" --data @b
     }
 ]
 ```
+
+## How to install
+
+### You can compile
+You need java jdk 11 to compile.
+```shell
+git clone https://github.com/Coubiac/vlsm-calculator-api.git
+cd vlsm-calculator-api.git
+./mvnw clean install
+java -jar target/vlsm*.jar
+```
+### Or you can use docker
+```shell
+docker run -d begr/vlsm:latest
+```
+
+Enjoy ;-)
+
