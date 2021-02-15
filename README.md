@@ -1,6 +1,7 @@
 # vlsm-calculator-api
 
 ![Java CI with Maven](https://github.com/Coubiac/vlsm-calculator-api/workflows/Java%20CI%20with%20Maven/badge.svg)
+![Code Coverage](https://raw.githubusercontent.com/Coubiac/vlsm-calculator-api/main/.github/badges/jacoco.svg)
 
 ```bash
 curl -H "Content-Type: application/json" -H "Accept: application/json" --data @body.json http://localhost:8080/
