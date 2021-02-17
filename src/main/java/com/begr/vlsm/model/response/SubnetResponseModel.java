@@ -1,8 +1,11 @@
 package com.begr.vlsm.model.response;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class SubnetResponseModel {
     public String name;
     public Integer neededSize;

@@ -7,7 +7,7 @@
 curl -H "Content-Type: application/json" -H "Accept: application/json" --data @body.json http://localhost:8080/
 ```
 
-## Input Exemple
+## Input @body.json Exemple
 ```json
 {
     "cidr": "192.168.1.0/24",

@@ -1,12 +1,16 @@
 package com.begr.vlsm.model.request;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import org.springframework.stereotype.Component;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-@Data
+@Getter
+@Setter
 @Component
 @Valid
 public class SubnetRequestModel implements Comparable<SubnetRequestModel> {
