@@ -10,7 +10,7 @@ curl -H "Content-Type: application/json" -H "Accept: application/json" --data @b
 ## Input @body.json Exemple
 ```json
 {
-    "cidr": "192.168.1.0/24",
+    "cidr": "192.168.1.0/23",
     "subnets": 
     [
         {
@@ -127,7 +127,7 @@ java -jar target/vlsm*.jar
 ```
 ### Or you can use docker
 ```shell
-docker run -d begr/vlsm:latest
+docker run -d -p 8080:8080 begr/vlsm:latest
 ```
 
 Enjoy ;-)
