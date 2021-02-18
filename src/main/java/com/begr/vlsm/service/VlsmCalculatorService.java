@@ -1,5 +1,6 @@
 package com.begr.vlsm.service;
 
+import com.begr.vlsm.exceptions.VlsmCalculatorServiceException;
 import com.begr.vlsm.model.request.NetworkDetailRequestModel;
 import com.begr.vlsm.model.request.SubnetRequestModel;
 import com.begr.vlsm.model.response.SubnetResponseModel;
@@ -16,16 +17,23 @@ public class VlsmCalculatorService {
      * @param networkDetailRequestModel
      * @return a subnet list
      */
-    public static List<SubnetResponseModel> calculate(NetworkDetailRequestModel networkDetailRequestModel) {
+    public static List<SubnetResponseModel> calculate(NetworkDetailRequestModel networkDetailRequestModel) throws VlsmCalculatorServiceException{
         List<SubnetResponseModel> output = new ArrayList<>();
         Collections.sort(networkDetailRequestModel.getSubnets());
+        Collections.reverse(networkDetailRequestModel.getSubnets());
         String majorNetwork = networkDetailRequestModel.getCidr();
+        String[] parsedCidr = majorNetwork.split("/");
+        int requestmask = Integer.parseInt(parsedCidr[1]);
+        int majorNetworkAllocatedSize = findUsableHosts(requestmask);
+        int globalAllocatedSize = 0;
+
 
         int currentIp = findFirstIp(majorNetwork);
 
 
         for (SubnetRequestModel requestSubnet : networkDetailRequestModel.getSubnets()
         ) {
+   
             SubnetResponseModel responseModel = new SubnetResponseModel();
             responseModel.setName(requestSubnet.getName());
             responseModel.setAddress(convertIpToQuartet(currentIp));
@@ -34,6 +42,7 @@ public class VlsmCalculatorService {
             responseModel.setMask("/" + mask);
             responseModel.setDecMask(toDecMask(mask));
             int allocatedSize = findUsableHosts(mask);
+            globalAllocatedSize = globalAllocatedSize + allocatedSize;
             responseModel.setAllocatedSize(allocatedSize);
             responseModel.setBroadcast(convertIpToQuartet(currentIp + allocatedSize + 1));
             responseModel.setFirstUsableAddress(convertIpToQuartet(currentIp + 1));
@@ -41,6 +50,9 @@ public class VlsmCalculatorService {
             output.add(responseModel);
 
             currentIp += allocatedSize + 2;
+        }
+        if(majorNetworkAllocatedSize < globalAllocatedSize){
+            throw new VlsmCalculatorServiceException("The global Network is too small for containing those subnets");
         }
 
         return output;

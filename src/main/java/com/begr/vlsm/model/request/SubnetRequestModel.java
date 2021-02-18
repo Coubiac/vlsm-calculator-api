@@ -7,7 +7,9 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @Getter
 @Setter
@@ -15,8 +17,10 @@ import javax.validation.constraints.NotNull;
 @Valid
 public class SubnetRequestModel implements Comparable<SubnetRequestModel> {
     @NotNull
+    @NotEmpty
     public String name;
     @NotNull
+    @Positive
     public Integer neededSize;
 
     @Override

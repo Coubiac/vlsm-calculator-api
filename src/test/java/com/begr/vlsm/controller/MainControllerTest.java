@@ -2,11 +2,12 @@ package com.begr.vlsm.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import com.begr.vlsm.model.request.NetworkDetailRequestModel;
 import com.begr.vlsm.model.request.SubnetRequestModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import ch.qos.logback.core.net.ObjectWriter;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -24,11 +24,11 @@ class MainControllerTest {
     @Autowired
     MockMvc mockMvc;
 
-    @Test
-    public void testValidRequest() throws Exception {
+    private NetworkDetailRequestModel requestBody;
 
-        String url = "/";
-        NetworkDetailRequestModel requestBody = new NetworkDetailRequestModel();
+    @BeforeEach
+    public void setupRequest(){
+        this.requestBody = new NetworkDetailRequestModel();
         requestBody.setCidr("192.168.1.0/23");
 
         List<SubnetRequestModel> subnetRequestModelList = new ArrayList<>();
@@ -65,10 +65,29 @@ class MainControllerTest {
 
         requestBody.setSubnets(subnetRequestModelList);
 
+    }
+
+    @Test
+    public void testValidRequest() throws Exception {
+     
+
          mockMvc.perform(post("/")
         .contentType(MediaType.APPLICATION_JSON)
         .content(asJsonString(requestBody)))
         .andExpect(status().isOk())
+        .andReturn();
+
+    }
+
+    @Test
+    public void testInvalidCIDR() throws Exception {
+     
+
+        requestBody.setCidr("192.168.46.0");
+         mockMvc.perform(post("/")
+        .contentType(MediaType.APPLICATION_JSON)
+        .content(asJsonString(requestBody)))
+        .andExpect(status().isInternalServerError())
         .andReturn();
 
     }
