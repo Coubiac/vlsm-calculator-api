@@ -1,6 +1,5 @@
 package com.begr.vlsm.model.response;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

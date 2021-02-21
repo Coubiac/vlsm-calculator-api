@@ -5,7 +5,7 @@ import com.begr.vlsm.model.request.NetworkDetailRequestModel;
 import com.begr.vlsm.model.request.SubnetRequestModel;
 import com.begr.vlsm.model.response.SubnetResponseModel;
 
-import org.assertj.core.api.Assertions;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,8 +21,8 @@ class VlsmCalculatorServiceTest {
 
 
 
-    NetworkDetailRequestModel request;
-    List<SubnetResponseModel> theResponse;
+    private NetworkDetailRequestModel request;
+    private List<SubnetResponseModel> theResponse;
 
     @BeforeEach
     void setup(){
