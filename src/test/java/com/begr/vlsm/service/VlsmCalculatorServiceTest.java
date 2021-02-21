@@ -22,7 +22,6 @@ class VlsmCalculatorServiceTest {
 
 
     private NetworkDetailRequestModel request;
-    private List<SubnetResponseModel> theResponse;
 
     @BeforeEach
     void setup(){
@@ -70,6 +69,7 @@ class VlsmCalculatorServiceTest {
 
     @Test
     void calculate() {
+        List<SubnetResponseModel> theResponse;
         theResponse = VlsmCalculatorService.calculate(request);
 
         assertThat(theResponse.size()).isEqualTo(6);

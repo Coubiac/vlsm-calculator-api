@@ -11,7 +11,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class VlsmApplicationTests {
 
     @Autowired
-    MainController controller;
+    private MainController controller;
 
     @Test
     void contextLoads() {
