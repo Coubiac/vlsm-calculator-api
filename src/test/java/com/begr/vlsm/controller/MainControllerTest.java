@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import com.begr.vlsm.model.request.NetworkDetailRequestModel;
 import com.begr.vlsm.model.request.SubnetRequestModel;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.http.MediaType;
@@ -98,8 +100,7 @@ class MainControllerTest {
             final String jsonContent = mapper.writeValueAsString(obj);
             return jsonContent;
         } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+            throw new org.springframework.boot.json.JsonParseException();        }
     }  
     
 

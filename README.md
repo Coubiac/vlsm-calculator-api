@@ -1,9 +1,8 @@
 # vlsm-calculator-api
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/dd9f8446c28645e9988b2b04bae2eb98)](https://app.codacy.com/gh/Coubiac/vlsm-calculator-api?utm_source=github.com&utm_medium=referral&utm_content=Coubiac/vlsm-calculator-api&utm_campaign=Badge_Grade)
-
 ![Java CI with Maven](https://github.com/Coubiac/vlsm-calculator-api/workflows/Java%20CI%20with%20Maven/badge.svg)
 ![Code Coverage](https://raw.githubusercontent.com/Coubiac/vlsm-calculator-api/main/.github/badges/jacoco.svg)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/dd9f8446c28645e9988b2b04bae2eb98)](https://app.codacy.com/gh/Coubiac/vlsm-calculator-api?utm_source=github.com&utm_medium=referral&utm_content=Coubiac/vlsm-calculator-api&utm_campaign=Badge_Grade)
 
 ```bash
 curl -H "Content-Type: application/json" -H "Accept: application/json" --data @body.json http://localhost:8080/

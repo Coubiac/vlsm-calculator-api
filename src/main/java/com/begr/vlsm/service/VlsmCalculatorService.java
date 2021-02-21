@@ -122,7 +122,7 @@ public class VlsmCalculatorService {
      * @return Mask
      */
     private static int calcMask(int neededSize) {
-        int highestBit = Integer.highestOneBit(neededSize);
+        int highestBit = Integer.highestOneBit(neededSize + 1); // +1 because broadcast address
         int position = (int) (Math.log(highestBit) / Math.log(2));
         return Integer.SIZE - (position + 1);   // +1 because position starts with 0
     }
