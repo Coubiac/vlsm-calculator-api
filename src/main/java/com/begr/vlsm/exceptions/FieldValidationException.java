@@ -16,7 +16,7 @@ public class FieldValidationException extends RuntimeException {
         String message = null;
         for (FieldError fieldError : fieldErrors) {
             if (message != null){
-                message = message + " - " + fieldError.getField()+ ": " + fieldError.getDefaultMessage();
+                message = message + "\n" + fieldError.getField()+ ": " + fieldError.getDefaultMessage();
             }else{
                 message = fieldError.getField()+ ": " + fieldError.getDefaultMessage();
             }
