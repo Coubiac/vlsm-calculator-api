@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.begr</groupId>
     <artifactId>vlsm</artifactId>
-    <version>1.0-RELEASE</version>
+    <version>1.0</version>
     <name>vlsm</name>
     <description>Vlsm Calculator</description>
     <properties>
