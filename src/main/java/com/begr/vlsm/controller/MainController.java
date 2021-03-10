@@ -14,14 +14,19 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.validation.Valid;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 @RestController
 @EnableWebMvc
 public class MainController {
 
+    private static Logger logger = LoggerFactory.getLogger(MainController.class);
+
     @PostMapping(value = "/")
     public ResponseEntity<List<SubnetResponseModel>> calculate(@Valid @RequestBody NetworkDetailRequestModel networkDetailRequestModel, BindingResult bindingResult){
+        logger.info("REQUETE: {}", networkDetailRequestModel);
         validateRequest(bindingResult);
 
         List<SubnetResponseModel> theSubnets = VlsmCalculatorService.calculate(networkDetailRequestModel);
