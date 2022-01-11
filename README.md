@@ -128,7 +128,8 @@ java -jar target/vlsm*.jar
 ```
 ### Or you can use docker
 ```shell
-docker run -d -p 8080:8080 begr/vlsm:latest
+docker build -t begr/vlsm-api .
+docker run -d -p 8080:8080 begr/vlsm-api
 ```
 
 Enjoy ;-)
