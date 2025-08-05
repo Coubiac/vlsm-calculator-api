@@ -27,12 +27,19 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
+      - name: Package JAR into ZIP for deployment
+        run: |
+          mkdir package
+          cp target/*.jar package/
+          cd package
+          zip ../java-app.zip *
+          cd ..
+      
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/*.jar'
-
+          path: java-app.zip
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -62,3 +69,4 @@ jobs:
           package: 'java-app/*.jar'
 
           
+
